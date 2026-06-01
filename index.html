@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ball Spiel</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="topbar">
+        <h1>Ball Spiel</h1>
+        <div class="stats">
+          <span>Punkte: <strong id="score">0</strong></span>
+          <span>Leben: <strong id="lives">3</strong></span>
+        </div>
+      </header>
+
+      <canvas id="game" width="800" height="500" aria-label="Ball Spiel"></canvas>
+
+      <footer class="controls">
+        <span>Pfeiltasten oder A/D bewegen</span>
+        <span>Leertaste startet neu</span>
+      </footer>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
