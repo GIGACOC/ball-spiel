@@ -13,15 +13,15 @@ const paddle = {
   y: canvas.height - 45,
   width: 140,
   height: 16,
-  speed: 5,
+  speed: 3,
 };
 
 const ball = {
   x: canvas.width / 2,
   y: 80,
   radius: 13,
-  speedX: 3,
-  speedY: 3,
+  speedX: 1,
+  speedY: 1,
 };
 
 let score = 0;
