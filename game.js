@@ -13,7 +13,7 @@ const paddle = {
   y: canvas.height - 45,
   width: 140,
   height: 16,
-  speed: 8,
+  speed: 5,
 };
 
 const ball = {
