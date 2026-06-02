@@ -2,6 +2,11 @@ const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
 const scoreText = document.querySelector("#score");
 const livesText = document.querySelector("#lives");
+const leftButton = document.querySelector("#leftButton");
+const rightButton = document.querySelector("#rightButton");
+
+const baseBallSpeed = 2;
+const maxBallSpeed = 6;
 
 const keys = {
   left: false,
@@ -29,10 +34,16 @@ let lives = 3;
 let gameOver = false;
 
 function resetBall() {
+  const speed = getBallSpeed();
+
   ball.x = canvas.width / 2;
   ball.y = 80;
-  ball.speedX = Math.random() < 0.5 ? -2 : 2;
-  ball.speedY = 2;
+  ball.speedX = Math.random() < 0.5 ? -speed : speed;
+  ball.speedY = speed;
+}
+
+function getBallSpeed() {
+  return Math.min(maxBallSpeed, baseBallSpeed + score * 0.12);
 }
 
 function restartGame() {
@@ -84,9 +95,10 @@ function moveBall() {
     const paddleCenter = paddle.x + paddle.width / 2;
     const hitPosition = (ball.x - paddleCenter) / (paddle.width / 2);
 
-    ball.speedX = hitPosition * 3.2;
-    ball.speedY = -Math.abs(ball.speedY) - 0.02;
     score += 1;
+    const speed = getBallSpeed();
+    ball.speedX = hitPosition * speed * 1.6;
+    ball.speedY = -speed;
     updateHud();
   }
 
@@ -164,14 +176,17 @@ function gameLoop() {
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") {
+    event.preventDefault();
     keys.left = true;
   }
 
   if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") {
+    event.preventDefault();
     keys.right = true;
   }
 
   if (event.code === "Space" && gameOver) {
+    event.preventDefault();
     restartGame();
   }
 });
@@ -185,6 +200,28 @@ document.addEventListener("keyup", (event) => {
     keys.right = false;
   }
 });
+
+function holdButton(button, direction) {
+  button.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+    keys[direction] = true;
+  });
+
+  button.addEventListener("pointerup", () => {
+    keys[direction] = false;
+  });
+
+  button.addEventListener("pointerleave", () => {
+    keys[direction] = false;
+  });
+
+  button.addEventListener("pointercancel", () => {
+    keys[direction] = false;
+  });
+}
+
+holdButton(leftButton, "left");
+holdButton(rightButton, "right");
 
 updateHud();
 gameLoop();
