@@ -13,15 +13,15 @@ const paddle = {
   y: canvas.height - 45,
   width: 140,
   height: 16,
-  speed: 3,
+  speed: 8,
 };
 
 const ball = {
   x: canvas.width / 2,
   y: 80,
   radius: 13,
-  speedX: 1,
-  speedY: 1,
+  speedX: 2,
+  speedY: 2,
 };
 
 let score = 0;
@@ -31,8 +31,8 @@ let gameOver = false;
 function resetBall() {
   ball.x = canvas.width / 2;
   ball.y = 80;
-  ball.speedX = Math.random() < 0.5 ? -3 : 3;
-  ball.speedY = 3;
+  ball.speedX = Math.random() < 0.5 ? -2 : 2;
+  ball.speedY = 2;
 }
 
 function restartGame() {
@@ -84,8 +84,8 @@ function moveBall() {
     const paddleCenter = paddle.x + paddle.width / 2;
     const hitPosition = (ball.x - paddleCenter) / (paddle.width / 2);
 
-    ball.speedX = hitPosition * 4.5;
-    ball.speedY = -Math.abs(ball.speedY) - 0.05;
+    ball.speedX = hitPosition * 3.2;
+    ball.speedY = -Math.abs(ball.speedY) - 0.02;
     score += 1;
     updateHud();
   }
