@@ -6,8 +6,9 @@ const speedText = document.querySelector("#speed");
 const leftButton = document.querySelector("#leftButton");
 const rightButton = document.querySelector("#rightButton");
 
-const baseBallSpeed = 2;
-const maxBallSpeed = 8;
+const isMobile = window.matchMedia("(max-width: 700px), (pointer: coarse)").matches;
+const baseBallSpeed = isMobile ? 10 : 2;
+const maxBallSpeed = isMobile ? 14 : 8;
 
 const keys = {
   left: false,
