@@ -2,11 +2,12 @@ const canvas = document.querySelector("#game");
 const ctx = canvas.getContext("2d");
 const scoreText = document.querySelector("#score");
 const livesText = document.querySelector("#lives");
+const speedText = document.querySelector("#speed");
 const leftButton = document.querySelector("#leftButton");
 const rightButton = document.querySelector("#rightButton");
 
 const baseBallSpeed = 2;
-const maxBallSpeed = 6;
+const maxBallSpeed = 8;
 
 const keys = {
   left: false,
@@ -43,7 +44,7 @@ function resetBall() {
 }
 
 function getBallSpeed() {
-  return Math.min(maxBallSpeed, baseBallSpeed + score * 0.12);
+  return Math.min(maxBallSpeed, baseBallSpeed + score * 0.35);
 }
 
 function restartGame() {
@@ -58,6 +59,7 @@ function restartGame() {
 function updateHud() {
   scoreText.textContent = score;
   livesText.textContent = lives;
+  speedText.textContent = getBallSpeed().toFixed(1);
 }
 
 function movePaddle() {
