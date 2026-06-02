@@ -10,6 +10,7 @@ body {
   background: #101624;
   color: #eef4ff;
   font-family: Arial, Helvetica, sans-serif;
+  user-select: none;
 }
 
 .game-shell {
@@ -52,14 +53,62 @@ canvas {
   font-size: 15px;
 }
 
-@media (max-width: 560px) {
+.mobile-controls {
+  display: none;
+}
+
+@media (max-width: 700px), (pointer: coarse) {
+  body {
+    min-height: 100svh;
+    padding: 12px;
+  }
+
+  .game-shell {
+    width: 100%;
+  }
+
   .topbar,
   .controls {
     align-items: flex-start;
     flex-direction: column;
+    gap: 8px;
   }
 
   h1 {
     font-size: 24px;
+  }
+
+  .stats {
+    margin-bottom: 8px;
+  }
+
+  canvas {
+    border-radius: 6px;
+  }
+
+  .controls {
+    font-size: 14px;
+  }
+
+  .mobile-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+  }
+
+  .mobile-controls button {
+    min-height: 72px;
+    border: 0;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 34px;
+    font-weight: bold;
+    touch-action: none;
+  }
+
+  .mobile-controls button:active {
+    background: #1d4ed8;
   }
 }
