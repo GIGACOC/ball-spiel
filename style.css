@@ -83,6 +83,7 @@ canvas {
   }
 
   canvas {
+    aspect-ratio: 8 / 4.4;
     border-radius: 6px;
   }
 
